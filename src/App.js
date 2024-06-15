@@ -31,12 +31,26 @@
 
 import React from 'react';
 import SignupPage from './pages/SignupPage';
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+
+// function App() {
+//   return (
+//     <div className="App">
+//       <SignupPage />
+//     </div>
+//   );
+// }
 
 function App() {
   return (
-    <div className="App">
-      <SignupPage />
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          {/* <Route path="/" element={<HomePage />} /> */}
+          <Route path="/signup" element={<SignupPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
