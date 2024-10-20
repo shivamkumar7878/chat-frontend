@@ -54,7 +54,8 @@ jobs:
       # Step 9: Copy the build artifacts to EC2
       - name: Deploy to EC2
         run: |
-          scp -i ec2-key.pem -r build-artifacts.tar.gz ec2-user@${{ secrets.EC2_IP }}:/home/ec2-user/scouting-frontend/
+          scp -i ec2-key.pem -r build/ ec2-user@${{ secrets.EC2_IP }}:/home/ec2-user/react-app/
+          # scp -i ec2-key.pem -r build-artifacts.tar.gz ec2-user@${{ secrets.EC2_IP }}:/home/ec2-user/scouting-frontend/
 
       # Step 10: SSH to EC2, Clean up old build files, extract new ones, and reload Nginx
       - name: SSH to EC2 and Deploy
