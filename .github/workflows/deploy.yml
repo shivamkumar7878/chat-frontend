@@ -62,10 +62,12 @@ jobs:
         run: |
           ssh -i ec2-key.pem ec2-user@${{ secrets.EC2_IP }} << 'EOF'
             cd /home/ec2-user/scouting-frontend
+            # Pull latest code using GitHub username and token
+            git pull https://${{ secrets.USERNAME}}:${{ secrets.TOKEN }}@github.com/Growth-Loops-Technology/scouting-frontend.git main
             # Remove old build files
             rm -rf .next public
             # Extract new build artifacts
             tar -xzf build-artifacts.tar.gz
-            # Reload Nginx to apply changes
-            sudo nginx -s reload
+            # Restart the app using PM2
+            pm2 restart scouting
           EOF
